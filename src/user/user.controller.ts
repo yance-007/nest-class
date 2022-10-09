@@ -76,6 +76,7 @@ export class UserController {
 
   @Get('getTestEnvName')
   getTestEnvName() {
+    console.log(this.configService.get('TEST_VALUE').name);
     return this.configService.get('TEST_VALUE').name;
   }
 }
