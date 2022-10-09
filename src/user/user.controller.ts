@@ -1,12 +1,13 @@
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Patch,
-  Param,
+  Controller,
   Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
   Version,
+  VERSION_NEUTRAL,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -22,9 +23,15 @@ export class UserController {
   }
 
   @Get()
-  @Version('1')
+  @Version([VERSION_NEUTRAL, '1'])
   findAll() {
     return this.userService.findAll();
+  }
+
+  @Get()
+  @Version('2')
+  findAll2() {
+    return 'new one';
   }
 
   @Get(':id')
