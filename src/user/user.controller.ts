@@ -14,7 +14,9 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { BusinessException } from '../common/exceptions/business.exception';
 import { ConfigService } from '@nestjs/config';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('用户')
 @Controller('user')
 export class UserController {
   constructor(
@@ -22,21 +24,15 @@ export class UserController {
     private readonly configService: ConfigService,
   ) {}
 
-  @Post()
+  @Post('')
   create(@Body() createUserDto: CreateUserDto) {
     return this.userService.create(createUserDto);
   }
 
-  @Get()
+  @Get('')
   @Version([VERSION_NEUTRAL, '1'])
   findAll() {
     return this.userService.findAll();
-  }
-
-  @Get()
-  @Version('2')
-  findAll2() {
-    return 'new one';
   }
 
   @Get(':id')

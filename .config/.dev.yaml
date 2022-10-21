@@ -6,3 +6,15 @@ FEISHU_CONFIG:
   FEISHU_API_HOST: https://open.feishu.cn
   FEISHU_APP_ID: cli_a3c84d7ffbf8d00b
   FEISHU_APP_SECRET: ZlxQtYVAsGvsned4Yk7WMgRPIg1cF8vj
+
+APP_TOKEN_CACHE_KEY: APP_TOKEN_CACHE_KEY
+
+MONGODB_CONFIG:
+  name: "gateway_server"
+  type: mongodb
+  url: "mongodb://admin:admin*1234@localhost:27017/gateway?authSource=admin"
+  username: "admin"
+  password: "admin*1234"
+  entities: "mongo"
+  logging: false
+  synchronize: true

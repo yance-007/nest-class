@@ -1,4 +1,4 @@
-import { getConfig } from '@/utils';
+import { getConfig } from '../../utils';
 
 const { FEISHU_CONFIG } = getConfig();
 

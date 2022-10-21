@@ -1,6 +1,6 @@
 import { APP_ID, APP_SECRET } from './const';
 
-import { methodV } from '@/utils/request';
+import { methodV } from '../../utils/request';
 
 export type GetAppTokenRes = {
   code: number;
