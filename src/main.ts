@@ -2,17 +2,30 @@
 import { VERSION_NEUTRAL, VersioningType } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 // 底层框架由 Express 换为 Fastify
-import { NestExpressApplication } from '@nestjs/platform-express';
+// import { NestExpressApplication } from '@nestjs/platform-express';
 import { AppModule } from './app.module';
+import fastify from 'fastify';
 import { TransformInterceptor } from './common/interceptors/transform.interceptor';
 import { AllExceptionsFilter } from './common/exceptions/base.exception.filter';
 import { HttpExceptionFilter } from './common/exceptions/http.exception.filter';
 import { generateDocument } from './doc';
+import {
+  FastifyAdapter,
+  NestFastifyApplication,
+} from '@nestjs/platform-fastify';
+import { FastifyLogger } from './common/logger';
 
 declare const module: any;
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  const fastifyInstance = fastify({
+    logger: FastifyLogger,
+  });
+
+  const app = await NestFactory.create<NestFastifyApplication>(
+    AppModule,
+    new FastifyAdapter(fastifyInstance),
+  );
 
   app.setGlobalPrefix('api');
 
@@ -36,4 +49,5 @@ async function bootstrap() {
 
   await app.listen(3000);
 }
+
 bootstrap();
