@@ -1,4 +1,16 @@
-import { BeforeInsert, Column, Entity, ObjectIdColumn, Unique } from 'typeorm';
+import {
+  BeforeInsert,
+  Column,
+  Entity,
+  ObjectIdColumn,
+  Unique,
+  UpdateDateColumn,
+} from 'typeorm';
+
+export enum UserStatus {
+  disabled = 0,
+  enabled = 1,
+}
 
 @Entity()
 @Unique(['name'])
@@ -6,12 +18,48 @@ export class User {
   @ObjectIdColumn()
   id?: number;
 
-  @Column()
-  name!: string;
+  @Column({ default: null })
+  name: string;
 
-  @Column()
-  age!: number;
+  @Column({ default: null })
+  username: string;
 
-  @Column({ default: 0 })
-  gender!: number;
+  @Column({ default: null })
+  email: string;
+
+  @Column({ default: null })
+  avatarUrl: string;
+
+  @Column({ default: null })
+  avatarThumb?: string;
+
+  @Column({ default: null })
+  avatarBig?: string;
+
+  @Column({ default: null })
+  avatarMiddle?: string;
+
+  @Column({ default: null })
+  mobile?: string;
+
+  @Column({ default: null })
+  enName?: string;
+
+  @Column({ default: null })
+  feishuUnionId?: string;
+
+  @Column({ default: null })
+  feishuUserId?: string;
+
+  @Column({ default: null })
+  departmentName?: string;
+
+  @Column({ default: null })
+  departmentId?: string;
+
+  @Column({ default: UserStatus.enabled })
+  status?: UserStatus;
+
+  @UpdateDateColumn()
+  updateTime?: string;
 }

@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { ConfigModule } from '@nestjs/config';
 import { getConfig } from './utils';
+import { AuthModule } from './auth/auth.module';
 import * as redisStore from 'cache-manager-redis-store';
 
 @Module({
@@ -23,6 +24,7 @@ import * as redisStore from 'cache-manager-redis-store';
       load: [getConfig],
     }),
     UserModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
