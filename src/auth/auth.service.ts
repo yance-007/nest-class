@@ -3,8 +3,6 @@ import { UserService } from './../user/user.service';
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { User } from '../user/entities/user.mongo.entity';
-import { CreateAuthDto } from './dto/create-auth.dto';
-import { UpdateAuthDto } from './dto/update-auth.dto';
 import { FeishuUserInfo } from '../user/feishu/feishu.dto';
 
 @Injectable()
@@ -14,26 +12,6 @@ export class AuthService {
     private UserService: UserService,
     private FeishuService: FeishuService,
   ) {}
-
-  create(createAuthDto: CreateAuthDto) {
-    return 'This action adds a new auth';
-  }
-
-  findAll() {
-    return `This action returns all auth`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} auth`;
-  }
-
-  update(id: number, updateAuthDto: UpdateAuthDto) {
-    return `This action updates a #${id} auth`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} auth`;
-  }
 
   // 验证飞书用户
   async validateFeishuUser(code: string) {
@@ -48,7 +26,7 @@ export class AuthService {
 
     return {
       userId: user.id,
-      userName: user.username,
+      username: user.username,
       name: user.name,
       email: user.email,
       feishuAccessToken: feishuInfo.accessToken,
